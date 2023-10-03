@@ -277,6 +277,8 @@ Provide the following code (replace your token in the file)
 
 Then open the file
 
+We have automated this workaround with the following bash script [bin/generaate_tfrc_credentials] 
+
 
 
 
