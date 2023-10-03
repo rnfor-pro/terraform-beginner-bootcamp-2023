@@ -243,3 +243,40 @@ If you lose this file you lose knowing th =e state of your infrastructure
 
 #### Directory
 `.terraform` dirctory cntains a local cache where Terraform retains some files it will need for subsequent operations against this configuration. 
+
+## Issues with Terraform Cloud Login and Gitpod Workspace
+
+When attempting to run `terraform login` it will launch in bash a wiswig view to generate a token. However it does not work as epected in in Gitpod VsCode in the browser.
+
+The workaround is manually generated a tokent in Terraform Cloud
+
+
+```
+https://app.terraform.io/app/settings/tokens
+```
+
+Then  manually create and open the file here:
+
+```sh
+touch /home/gitpod/.terraform.d/credentials.tfrc.json
+open /home/gitpod/.terraform.d/credentials.tfrc.json
+```
+
+Provide the following code (replace your token in the file)
+
+
+```json
+{
+  "credentials": {
+    "app.terraform.io": {
+      "token": "YOUR-TERRAFORM-CLOUD-TOKEN"
+    }
+  }
+}
+```
+
+Then open the file
+
+
+
+
