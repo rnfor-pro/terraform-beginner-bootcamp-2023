@@ -1,16 +1,16 @@
 terraform {
-#    cloud {
-#       organization = "etech-dev"
+  #    cloud {
+  #       organization = "etech-dev"
 
-#       workspaces {
-#         name = "terra-house-1"
-#       }
-#     }
+  #       workspaces {
+  #         name = "terra-house-1"
+  #       }
+  #     }
   required_providers {
-    random = {
-      source  = "hashicorp/random"
-      version = "3.5.1"
-    }
+    # random = {
+    #   source  = "hashicorp/random"
+    #   version = "3.5.1"
+    # }
     aws = {
       source  = "hashicorp/aws"
       version = "5.19.0"
