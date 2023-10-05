@@ -60,6 +60,65 @@ Create a `auto.tfvars` file with the following content. I will name my file `rud
 
   - Any `-var` and `-var-file` options on the command line, in the order they are provided.
 
+## Dealing with Configuration Drift
+
+## What happens if we lose our state file
+
+If you lose your statefile, you most likley have to tear down all your cloud infrastructure manually.
+
+You can use terraform port but it won't for all cloud resources. You need check the terraform providers documentation for which resources support import.
+
+### Fix Missing Resource with Terraform Import
+
+`terraform import aws_s3_bucket.bucket bucket-name`
+
+[Terraform Import](https://developer.hashicorp.com/terraform/cli/import)
+
+### Fix Manual Configuration
+
+When any resource created terraform is modified or deleted by hand, if we run `terraform plan` it will attempt to put our infrastructure back nto the expected state fixing Configuration Drift. 
+
+## Fix using Terraform refresh
+```sh
+terraform apply -refresh-only -auto-approve
+```
+
+## Terraform modules
+
+### Terraform modules structure
+
+It is recomended to place modules in a `module` directory when developing locally but you can name it whatever you like.
+
+### Pasing input variables
+
+We can pass input variables to our modules.
+The modules has to declare the terraform module in it's own `variable.tf`
+
+```tf
+module "terrahouse_aws" {
+  source = "./modules/terrahouse_aws"
+  user_uuid = var.user_uuid
+  bucket_name = var.bucket_name
+}
+```
+
+
+### Modules sources
+
+Using the source we can import the modules from various palces eg:
+- locally
+- Github
+- Terraform Registry
+
+```tf
+module "terrahouse_aws" {
+  source = "./modules/terrahouse_aws"
+}
+```
+
+
+
+
 
 
 
