@@ -35,7 +35,7 @@ variable "error_html_filepath" {
 
   validation {
     condition     = fileexists(var.error_html_filepath)
-    error_message = "The specified error.html file does not exist."
+    error_message = "The specified error.html file does not exist." 
   }
 }
 

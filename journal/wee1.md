@@ -143,7 +143,6 @@ In Terraform there is a special variable called `path` that allows us to referen
  - path.module = get the path for the current module
  - path.root = get the path for the root module
 
-[Special Path Variables](https://developer.hashicorp.com/terraform/language/expressions/references#:~:text=a%20data%20resource.-,Filesystem%20and%20Workspace%20Info,-The%20following%20values)
 
 ```tf
 resource "aws_s3_object" "index_html" {
@@ -152,8 +151,52 @@ resource "aws_s3_object" "index_html" {
   source = "${path.root}/public/index.html"
 }
 ```
+[Special Path Variables](https://developer.hashicorp.com/terraform/language/expressions/references#:~:text=a%20data%20resource.-,Filesystem%20and%20Workspace%20Info,-The%20following%20values)
+
+## Terraform Locals
+
+Locals allows us to define local variables. It can be very useful when we need transform data into another format and have referenced a varaible.
+
+```tf
+locals {
+  s3_origin_id = "MyS3Origin"
+}
+```
+
+[Local Values](https://developer.hashicorp.com/terraform/language/values/locals#:~:text=v1.6.x%20(latest)-,Local%20Values,-Hands%2Don%3A)
 
 
+### Terraform Data Sources
+
+
+This allows us to source data from cloud resources.
+
+This is useful when we want to reference cloud resources without importing them
+
+```tf
+data "aws_caller_identity" "current" {}
+
+output "account_id" {
+  value = data.aws_caller_identity.current.account_id
+}
+
+```
+[Data Sources](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity#:~:text=Data%20Source%3A%20aws_caller_identity)
+or 
+[this](https://developer.hashicorp.com/terraform/language/data-sources#:~:text=v1.6.x%20(latest)-,Data%20Sources,-Data%20sources%20allow)
+
+
+## Working With Jason
+
+The `jasonencode` is used to create the json policy inline in `hcl`
+
+```json
+jsonencode({"hello"="world"})
+{"hello":"world"}
+
+```
+
+[jsonencode Function](https://developer.hashicorp.com/terraform/language/functions/jsonencode#:~:text=v1.6.x%20(latest)-,jsonencode%20Function,-jsonencode%20encodes%20a)
 
 
 
