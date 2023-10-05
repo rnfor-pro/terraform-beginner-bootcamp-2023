@@ -17,5 +17,5 @@ variable "error_html_path" {
 }
 
 variable "content_version" {
-  type        = number
+  type = number
 }

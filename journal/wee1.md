@@ -208,7 +208,56 @@ Plain data values such as Local Values and Input Variables don't have any side-e
 
 [Teraform Data](https://developer.hashicorp.com/terraform/language/resources/terraform-data)
 
+## Provisiners
 
+Provisioners are used to execute scripts on a local or remote machine as part of resource creation or destruction. Provisioners are used to bootstrap a resource, cleanup before destroy, run configuration management, etc.
+
+They are not recomended for use by harshicorp because configuration management tools such as `Ansible` are a better fit for the functionality exists
+
+[Provisioners](https://developer.hashicorp.com/terraform/language/resources/provisioners/syntax)
+
+### Local Exec
+
+```tf
+resource "aws_instance" "web" {
+  # ...
+
+  provisioner "local-exec" {
+    command = "echo The server's IP address is ${self.private_ip}"
+  }
+}
+```
+
+This will execute command on the machine running the terraform commands eg. plan apply
+
+[Local Exec](https://developer.hashicorp.com/terraform/language/resources/provisioners/local-exec#:~:text=v1.6.x%20(latest)-,local%2Dexec%20Provisioner,-The%20local%2Dexec)
+
+### Remote Exec
+
+```tf
+resource "aws_instance" "web" {
+  # ...
+
+  # Establishes connection to be used by all
+  # generic remote provisioners (i.e. file/remote-exec)
+  connection {
+    type     = "ssh"
+    user     = "root"
+    password = var.root_password
+    host     = self.public_ip
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "puppet apply",
+      "consul join ${aws_instance.web.private_ip}",
+    ]
+  }
+}
+```
+
+This will execute commands on a machine which you target. You will need to provide credentials such as ssh to get into the machine.
+[Remote Exec](https://developer.hashicorp.com/terraform/language/resources/provisioners/remote-exec#:~:text=v1.6.x%20(latest)-,remote%2Dexec%20Provisioner,-The%20remote%2Dexec)
 
 
 
