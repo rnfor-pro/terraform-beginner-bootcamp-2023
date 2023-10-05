@@ -1,30 +1,16 @@
-terraform {
-  #    cloud {
-  #       organization = "etech-dev"
+# terraform {
+#   backend "remote" {
+#     hostname = "app.terraform.io"
+#     organization = "rudolph.life"
+#     workspaces {
+#       name = "terrahouse"
+#     }
+#   }
+#    cloud {
+#       organization = "etech-dev"
 
-  #       workspaces {
-  #         name = "terra-house-1"
-  #       }
-  #     }
-  required_providers {
-    # random = {
-    #   source  = "hashicorp/random"
-    #   version = "3.5.1"
-    # }
-    aws = {
-      source  = "hashicorp/aws"
-      version = "5.19.0"
-    }
-  }
-}
-
-
-
-provider "aws" {
-  # Configuration options
-}
-
-
-provider "random" {
-  # Configuration options
-}
+#       workspaces {
+#         name = "terra-house-1"
+#       }
+#     }
+# }
