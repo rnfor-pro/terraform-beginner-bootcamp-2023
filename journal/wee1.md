@@ -198,6 +198,16 @@ jsonencode({"hello"="world"})
 
 [jsonencode Function](https://developer.hashicorp.com/terraform/language/functions/jsonencode#:~:text=v1.6.x%20(latest)-,jsonencode%20Function,-jsonencode%20encodes%20a)
 
+### Changing the Lifecycle of Resources
+
+[The lifecycle Meta-Argument](https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle#:~:text=v1.6.x%20(latest)-,The%20lifecycle%20Meta%2DArgument,-Hands%2Don%3A)
+
+## Terraform Data
+
+Plain data values such as Local Values and Input Variables don't have any side-effects to plan against and so they aren't valid in `replace_triggered_by`. You can use `terraform_data`'s behavior of planning an action each time input changes to indirectly use a plain value to trigger replacement.
+
+[Teraform Data](https://developer.hashicorp.com/terraform/language/resources/terraform-data)
+
 
 
 
