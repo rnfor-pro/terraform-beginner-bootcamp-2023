@@ -14,6 +14,11 @@ tasks:
       source ./bin/install_terraform_cli
       source ./bin/install_aws_cli
       source ./bin/generaate_tfrc_credentials
+  - name: http-server
+    before: |
+      npm install --global http-server
+    command: 
+      http-server
 vscode:
   extensions:
     - amazonwebservices.aws-toolkit-vscode

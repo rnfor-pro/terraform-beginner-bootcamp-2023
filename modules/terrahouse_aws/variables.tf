@@ -49,6 +49,11 @@ variable "content_version" {
   }
 }
 
+variable "assets_path" {
+  description = "Path to Assests Folder"
+  type = string
+}
+
 
 
 
