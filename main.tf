@@ -1,4 +1,4 @@
-# terraform {
+ terraform {
 #   backend "remote" {
 #     hostname = "app.terraform.io"
 #     organization = "rudolph.life"
@@ -6,14 +6,14 @@
 #       name = "terrahouse"
 #     }
 #   }
-#    cloud {
-#       organization = "etech-dev"
+   cloud {
+      organization = "etech-dev"
 
-#       workspaces {
-#         name = "terra-house-1"
-#       }
-#     }
-# }
+      workspaces {
+        name = "terraform-cloud"
+      }
+    }
+}
 
 module "terrahouse_aws" {
   source      = "./modules/terrahouse_aws"
