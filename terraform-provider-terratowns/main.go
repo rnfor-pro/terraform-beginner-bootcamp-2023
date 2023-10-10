@@ -89,6 +89,7 @@ func providerConfigure(p *schema.Provider) schema.ConfigureContextFunc {
 	}
 }
 
+
 func Resource() *schema.Resource {
 	log.Print("Resource:start")
 	resource := &schema.Resource{
@@ -124,6 +125,7 @@ func Resource() *schema.Resource {
 			},
 		},
 	}
+	
 	log.Print("Resource:start")
 	return resource
 }
