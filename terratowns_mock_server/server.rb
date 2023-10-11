@@ -84,11 +84,11 @@ class TerraTownsMockServer < Sinatra::Base
   
   # return a harcoded access token
   def x_access_code
-    return '9b49b3fb-b8e9-483c-b703-97ba88eef8e0'
+    return '23e74865-d1c0-4a86-b4e3-f4cb328a43ef'
   end
 
   def x_user_uuid
-    return 'e328f4ab-b99f-421c-84c9-4ccea042c7d1'
+    return 'b6aaabcd-7bf8-4580-a829-90113d6925b3'
   end
 
   def find_user_by_bearer_token

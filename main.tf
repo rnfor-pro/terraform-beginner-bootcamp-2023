@@ -24,22 +24,23 @@ terraform {
 }
 
 provider "terratowns" {
-  endpoint  = "http://localhost:4567/api"
-  user_uuid = "e328f4ab-b99f-421c-84c9-4ccea042c7d1"
-  token     = "9b49b3fb-b8e9-483c-b703-97ba88eef8e0"
+  endpoint  = var.terratowns_endpoint
+  user_uuid = var.teacherseat_user_uuid
+  token = var.terratowns_access_token
 }
 
-# module "terrahouse_aws" {
-#   source              = "./modules/terrahouse_aws"
-#   user_uuid           = var.user_uuid
-#   bucket_name         = var.bucket_name
-#   index_html_filepath = var.index_html_path
-#   error_html_filepath = var.error_html_path
-#   content_version     = var.content_version
-# }
+module "terrahouse_aws" {
+  source              = "./modules/terrahouse_aws"
+  user_uuid           = var.teacherseat_user_uuid
+  #bucket_name         = var.bucket_name
+  index_html_filepath = var.index_html_path
+  error_html_filepath = var.error_html_path
+  content_version     = var.content_version
+  assets_path = var.assets_path
+}
 
 resource "terratowns_home" "home" {
-  name        = "How to play Arcanum in 2023!"
+  name        = "The Richest Man in History!"
   description = <<DESCRIPTION
 Mansa Musa, also known as Musa I of Mali, was a 14th-century 
 West African ruler who is often regarded as one of the wealthiest individuals in history. 
@@ -48,9 +49,9 @@ pivotal in the global trade network at the time. His pilgrimage to Mecca in 1324
 accompanied by a vast retinue and tons of gold, is famous for contributing to the economic 
 instability of regions along his route due to the sheer scale of his wealth.
 DESCRIPTION
-  #domain_name = module.terrahouse_aws.cloudfront_url
-  domain_name     = "673yg847uh.cloudfront.net"
-  town            = "gamers-grotto"
+  domain_name = module.terrahouse_aws.cloudfront_url
+  #domain_name     = "yet637y.cloudfront.net"
+  town            = "missingo"
   content_version = 1
 }
 
