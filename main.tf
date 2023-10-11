@@ -49,7 +49,7 @@ instability of regions along his route due to the sheer scale of his wealth.
 DESCRIPTION
   domain_name = module.home_mensa_musa_hosting.domain_name
   #domain_name     = "yet637y.cloudfront.net"
-  town            = "missingo"
+  town            = "gamers-grotto"
   content_version = var.mensa_musa.content_version
 }
 
@@ -72,7 +72,7 @@ It offers breathtaking panoramic views of the city's skyline and beyond, providi
 DESCRIPTION
   domain_name = module.home_vacation_hosting.domain_name
   #domain_name     = "yet637y.cloudfront.net"
-  town            = "missingo"
+  town            = "the-nomad-pad"
   content_version = var.vacation.content_version
 
 }
