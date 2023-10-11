@@ -7,20 +7,20 @@ terraform {
   }
 
 
-  #   backend "remote" {
-  #     hostname = "app.terraform.io"
-  #     organization = "rudolph.life"
-  #     workspaces {
-  #       name = "terrahouse"
-  #     }
-  #   }
-  #    cloud {
-  #       organization = "etech-dev"
+    # backend "remote" {
+    #   hostname = "app.terraform.io"
+    #   organization = "rudolph.life"
+    #   workspaces {
+    #     name = "terrahouse"
+    #   }
+    # }
+     cloud {
+         organization = "etech-dev"
 
-  #       workspaces {
-  #         name = "terra-house-1"
-  #       }
-  #     }
+         workspaces {
+           name = "terra-house-1"
+         }
+       }
 }
 
 provider "terratowns" {
@@ -29,14 +29,12 @@ provider "terratowns" {
   token = var.terratowns_access_token
 }
 
-module "terrahouse_aws" {
-  source              = "./modules/terrahouse_aws"
+module "home_mensa_musa_hosting" {
+  source              = "./modules/terrahome_aws"
   user_uuid           = var.teacherseat_user_uuid
+  public_path = var.mensa_musa.public_path
   #bucket_name         = var.bucket_name
-  index_html_filepath = var.index_html_path
-  error_html_filepath = var.error_html_path
-  content_version     = var.content_version
-  assets_path = var.assets_path
+  content_version     = var.mensa_musa.content_version
 }
 
 resource "terratowns_home" "home" {
@@ -49,10 +47,34 @@ pivotal in the global trade network at the time. His pilgrimage to Mecca in 1324
 accompanied by a vast retinue and tons of gold, is famous for contributing to the economic 
 instability of regions along his route due to the sheer scale of his wealth.
 DESCRIPTION
-  domain_name = module.terrahouse_aws.cloudfront_url
+  domain_name = module.home_mensa_musa_hosting.domain_name
   #domain_name     = "yet637y.cloudfront.net"
   town            = "missingo"
-  content_version = 1
+  content_version = var.mensa_musa.content_version
+}
+
+
+
+
+module "home_vacation_hosting" {
+  source              = "./modules/terrahome_aws"
+  user_uuid           = var.teacherseat_user_uuid
+  public_path = var.vacation.public_path
+  #bucket_name         = var.bucket_name
+  content_version     = var.vacation.content_version
+}
+
+resource "terratowns_home" "home_vacation" {
+  name        = "Best Vacation Spot in Dubai!!"
+  description = <<DESCRIPTION
+One of the best vacation spots in Dubai is the Burj Khalifa observation deck. 
+It offers breathtaking panoramic views of the city's skyline and beyond, providing a memorable experience for visitors.
+DESCRIPTION
+  domain_name = module.home_vacation_hosting.domain_name
+  #domain_name     = "yet637y.cloudfront.net"
+  town            = "missingo"
+  content_version = var.vacation.content_version
+
 }
 
 
